@@ -1,0 +1,25 @@
+.dash{
+    margin-left:150px;
+    margin-right: 150px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border-style: groove;
+    padding-bottom: 2%;
+    background-color: white;
+}
+
+.dash h3{
+    padding-left: 3%;
+}
+
+.dash h4{
+    padding-left: 1%;
+}
+
+
+
+.shall{
+    border-radius: 50%;
+    border-color: black;
+    border-style:groove;
+}
