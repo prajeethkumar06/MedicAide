@@ -1,6 +1,6 @@
 import React from 'react';
 import './PatientProfile.css';
-import imag from 'F:\\Medic Aide\\MedicAide\\medicaide\\src\\assets\\patient.jpg'
+import imag from '../../../assets/patient.jpg'
 
 const PatientProfile = () => {
 

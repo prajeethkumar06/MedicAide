@@ -15,7 +15,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import Button from '@mui/material/Button';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
-import logo from 'F:\\Medic Aide\\MedicAide\\medicaide\\src\\assets\\Medic aide.png';
+import logo from '../../../assets/Medic aide.png';
 import {useNavigate} from 'react-router-dom';
 import './Prescription.css'
 import MedicineList from './MedicineList'

@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,7 +13,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import logo from 'F:\\Medic Aide\\MedicAide\\medicaide\\src\\assets\\Medic aide.png';
+import logo from '../../assets/Medic aide.png';
 import './LoginDoctor.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -50,19 +51,44 @@ const theme = createTheme({
 });
 
 export default function LoginDoctor() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      docid: data.get('docid'),
-      password: data.get('password'),
+  const Navigate=useNavigate();
+  const next = () =>{
+    Navigate("/Doctor");
+  }
+  const [loginData, setLoginData] = useState({
+      doctorid: '',
+      password: '',
     });
-  };
-
-  const navigate = useNavigate();
-  const next = () => {
-    navigate('/Doctor');
-  };
+    const handleLoginChange = (e) => {
+      const { name, value } = e.target;
+      setLoginData((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    };
+  const handleLoginSubmit = async (e) => {
+      e.preventDefault();
+      const { doctor_id, password } = loginData;
+      if (doctor_id && password) {
+        try {
+          const response = await axios.get('http://localhost:8080/api/signup');
+          const userExist = response.data.some(
+            (data) => data.doctor_id === doctor_id && data.password === password
+          );
+          if (userExist) {
+            alert('Login successful');
+            next();
+          } else {
+            alert('User Not Found');
+          }
+        } catch (error) {
+          console.error('Error fetching users', error);
+          alert('Error logging in');
+        }
+      } else {
+        alert('Please fill all the fields');
+      }
+    }
 
   return (
     <ThemeProvider theme={theme}>
@@ -90,16 +116,17 @@ export default function LoginDoctor() {
           <Typography component="h1" variant="h5" sx={{ml:19}}>
             Doctor
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
               fullWidth
-              id="docid"
-              label="Doctor ID"
-              name="docid"
-              autoComplete="docid"
+              id="doctorid"
+              label="doctorid"
+              name="doctor_id"
+              autoComplete="doctorid"
               autoFocus
+              onChange={handleLoginChange}
             />
             <TextField
               margin="normal"
@@ -110,6 +137,7 @@ export default function LoginDoctor() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={handleLoginChange}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -120,7 +148,7 @@ export default function LoginDoctor() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={next}
+              onClick={{handleLoginSubmit}}
             >
               Login
             </Button>

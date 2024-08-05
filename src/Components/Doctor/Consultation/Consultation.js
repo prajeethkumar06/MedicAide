@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -14,7 +15,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Button from '@mui/material/Button';
-import logo from 'F:\\Medic Aide\\MedicAide\\medicaide\\src\\assets\\Medic aide.png';
+import logo from '../../../assets/Medic aide.png';
 import {useNavigate} from 'react-router-dom';
 import './Consultation.css'
 
@@ -58,55 +59,51 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function Consultation() {
 
-  const Navigate=useNavigate();
-  const next=()=>{
-    Navigate('/PatientDetails')
-  }
+export default function Consultation() {
   
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
+  
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
+  
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
+  
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
-
+  
   const handleMenuClose = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
   };
-
+  
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
-
+  
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
+    anchorEl={anchorEl}
+    anchorOrigin={{
+      vertical: 'top',
+      horizontal: 'right',
+    }}
+    id={menuId}
+    keepMounted
+    transformOrigin={{
+      vertical: 'top',
+      horizontal: 'right',
+    }}
+    open={isMenuOpen}
+    onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+    <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+    <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
   );
 
@@ -126,12 +123,12 @@ export default function Consultation() {
       }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
-    >
+      >
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
+      <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+      <Badge badgeContent={4} color="error">
+      <MailIcon />
+      </Badge>
         </IconButton>
         <p>Messages</p>
       </MenuItem>
@@ -141,27 +138,61 @@ export default function Consultation() {
           aria-label="show 17 new notifications"
           color="inherit"
         >
-          <Badge badgeContent={17} color="error">
+        <Badge badgeContent={17} color="error">
             <NotificationsIcon />
           </Badge>
         </IconButton>
         <p>Notifications</p>
-      </MenuItem>
+        </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
+      <IconButton
+      size="large"
+      aria-label="account of current user"
+      aria-controls="primary-search-account-menu"
+      aria-haspopup="true"
+      color="inherit"
+      >
+      <AccountCircle />
+      </IconButton>
+      <p>Profile</p>
       </MenuItem>
-    </Menu>
-  );
-
+      </Menu>
+    );
+    
+    const Navigate=useNavigate();
+    const next = () =>{
+        Navigate('/PatientDetails');
+    }
+    const [consultationData, setconsultationData] = useState({
+        consultationNumber: '',
+        presentingComplaint: '',
+        historyPC: '',
+        pmhistory: '',
+        pastsurgery: '',
+      });
+          
+      const handleConsultationChange = (e) => {
+        const { name, value } = e.target;
+        setconsultationData((prevState) => ({
+          ...prevState,
+          [name]: value,
+        }));
+      };
+      const handleConsultationSubmit = async (e) => {
+        e.preventDefault();
+        const { consultation_number ,Presenting_Complaint ,History_PC ,Pm_History ,Past_surgeries } = consultationData;
+        if ( consultation_number ,Presenting_Complaint ,History_PC ,Pm_History ,Past_surgeries) {
+          try {
+            await axios.post('http://localhost:8080/api/consultation', consultationData);
+            alert('User Created');
+            next();
+          } catch (error) {
+            alert('Error creating user');
+          }
+        } else {
+          alert('Please fill all the fields');
+        }
+      };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ backgroundColor: '#c21807' }}>
@@ -223,16 +254,16 @@ export default function Consultation() {
         <Box>
         <div class='con'>
           <h2>Consultation</h2>
-          <p>Consultation No: <input type="text" required placeholder='Consultation Number'></input></p>
+          <p>Consultation No: <input type="text" required name="consultation_number" placeholder='Consultation Number' onChange={handleConsultationChange}></input></p>
           <p>Presenting Complaint: </p>
-          <textarea rows="10" cols="90" id="pc"></textarea>
+          <textarea rows="10" cols="90" id="pc" name="Presenting_Complaint" onChange={handleConsultationChange}></textarea>
           <p>History Of Presenting Complaint:</p>
-          <textarea rows="10" cols="90" id="hpc"></textarea>
+          <textarea rows="10" cols="90" id="hpc" name="History_PC" onChange={handleConsultationChange}></textarea>
           <p>Past Medical History(PMH):</p>
-          <textarea rows="10" cols="90" id="pmh"></textarea>
+          <textarea rows="10" cols="90" id="pmh" name="Pm_History" onChange={handleConsultationChange}></textarea>
           <p>Past Admission,Surgeries or Diseases:</p>
-          <textarea rows="10" cols="90" id="past"></textarea><br></br><br></br>
-          <Button variant="contained" color="success" sx={{ml:7 ,mb:5}}>
+          <textarea rows="10" cols="90" id="past" name="Past_surgeries" onChange={handleConsultationChange}></textarea><br></br><br></br>
+          <Button variant="contained" color="success" sx={{ml:7 ,mb:5}} onClick={handleConsultationSubmit}>
             Submit
           </Button>
         </div>

@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import logo from 'F:\\Medic Aide\\MedicAide\\medicaide\\src\\assets\\Medic aide.png';
+import logo from '../../assets/Medic aide.png';
 import './LoginPatient.css';
 import { useNavigate } from 'react-router-dom';
 

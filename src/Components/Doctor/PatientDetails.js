@@ -15,10 +15,10 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import logo from 'F:\\Medic Aide\\MedicAide\\medicaide\\src\\assets\\Medic aide.png';
+import logo from '../../assets/Medic aide.png';
 import './PatientDetails.css';
-import image from 'F:\\Medic Aide\\MedicAide\\medicaide\\src\\assets\\patient.jpg';
-import gif from 'F:\\Medic Aide\\MedicAide\\medicaide\\src\\assets\\Medic aide.gif';
+import image from '../../assets/patient.jpg';
+import gif from '../../assets/Medic aide.gif';
 import { useNavigate } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({

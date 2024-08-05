@@ -1,4 +1,6 @@
-import * as React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -46,14 +48,40 @@ const theme = createTheme({
 });
 
 export default function SignUpPat() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+  const [signupData, setSignupData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    patientid: '',
+    password: '',
+  });
+      
+  const handleSignupChange = (e) => {
+    const { name, value } = e.target;
+    setSignupData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
+  const handleSignupSubmit = async (e) => {
+    e.preventDefault();
+    const { first_name,last_name,email_id,patient_id,password } = signupData;
+    if ( first_name,last_name,email_id,patient_id,password) {
+      try {
+        await axios.post('http://localhost:8080/api/signuppat', signupData);
+        alert('User Created');
+        next();
+      } catch (error) {
+        alert('Error creating user');
+      }
+    } else {
+      alert('Please fill all the fields');
+    }
+  };
+  const Navigate=useNavigate();
+    const next = () =>{
+        Navigate('/LoginPatient');
+    }
 
   return (
     <ThemeProvider theme={theme}>
@@ -77,27 +105,29 @@ export default function SignUpPat() {
           <Typography component="h1" variant="h5">
             Patient Sign Up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" noValidate sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="given-name"
-                  name="firstName"
+                  name="first_name"
                   required
                   fullWidth
-                  id="firstName"
+                  id="first_name"
                   label="First Name"
                   autoFocus
+                  onChange={handleSignupChange}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
                   fullWidth
-                  id="lastName"
+                  id="last_name"
                   label="Last Name"
-                  name="lastName"
+                  name="last_name"
                   autoComplete="family-name"
+                  onChange={handleSignupChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -106,18 +136,20 @@ export default function SignUpPat() {
                   fullWidth
                   id="email"
                   label="Email Address"
-                  name="email"
+                  name="email_id"
                   autoComplete="email"
+                  onChange={handleSignupChange}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  id="patid"
+                  id="patientid"
                   label="Patient ID"
-                  name="patid"
+                  name="patient_id"
                   autoComplete="patid"
+                  onChange={handleSignupChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -129,6 +161,7 @@ export default function SignUpPat() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={handleSignupChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -143,6 +176,7 @@ export default function SignUpPat() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2, bgcolor: 'secondary.main', '&:hover': { bgcolor: 'secondary.dark' } }}
+              onClick={handleSignupSubmit}
             >
               Sign Up
             </Button>

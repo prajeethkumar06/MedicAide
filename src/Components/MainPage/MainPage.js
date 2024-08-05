@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import { purple } from '@mui/material/colors';
 import './MainPage.css';
-import logo from 'F:\\Medic Aide\\MedicAide\\medicaide\\src\\assets\\Medic aide.png';
+import logo from '../../assets/Medic aide.png';
 import { useNavigate } from 'react-router-dom';
 
 const BootstrapButton = styled(Button)({
