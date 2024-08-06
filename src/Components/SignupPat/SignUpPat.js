@@ -54,7 +54,7 @@ export default function SignUpPat() {
     email: '',
     patientid: '',
     password: '',
-  });
+  });   //used declare and manage state variables directly within a function component
       
   const handleSignupChange = (e) => {
     const { name, value } = e.target;
@@ -77,11 +77,11 @@ export default function SignUpPat() {
     } else {
       alert('Please fill all the fields');
     }
-  };
+  };                                       //The Above code is to establish connection with the API useing axios and post the data in the database
   const Navigate=useNavigate();
     const next = () =>{
         Navigate('/LoginPatient');
-    }
+    } //used For navigating from one page to another
 
   return (
     <ThemeProvider theme={theme}>
@@ -117,7 +117,7 @@ export default function SignUpPat() {
                   label="First Name"
                   autoFocus
                   onChange={handleSignupChange}
-                />
+                />{/**input field for first name**/}
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -128,7 +128,7 @@ export default function SignUpPat() {
                   name="last_name"
                   autoComplete="family-name"
                   onChange={handleSignupChange}
-                />
+                />{/**input field for last name**/}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -139,7 +139,7 @@ export default function SignUpPat() {
                   name="email_id"
                   autoComplete="email"
                   onChange={handleSignupChange}
-                />
+                />{/**input field for email id**/}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -150,7 +150,7 @@ export default function SignUpPat() {
                   name="patient_id"
                   autoComplete="patid"
                   onChange={handleSignupChange}
-                />
+                />{/**input field for Patient Id**/}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -162,7 +162,7 @@ export default function SignUpPat() {
                   id="password"
                   autoComplete="new-password"
                   onChange={handleSignupChange}
-                />
+                />{/**input field for password**/}
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
@@ -179,12 +179,12 @@ export default function SignUpPat() {
               onClick={handleSignupSubmit}
             >
               Sign Up
-            </Button>
+            </Button>{/**submit button calling the function hadleSignUpSubmit using onClick**/}
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="/LoginPatient" variant="body2">
                   Already have an account? Sign in
-                </Link>
+                </Link>{/**routed to Login Page of Patient**/}
               </Grid>
             </Grid>
           </Box>

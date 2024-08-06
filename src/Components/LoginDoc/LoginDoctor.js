@@ -51,33 +51,32 @@ const theme = createTheme({
 });
 
 export default function LoginDoctor() {
+  
   const Navigate=useNavigate();
-  const next = () =>{
-    Navigate("/Doctor");
-  }
   const [loginData, setLoginData] = useState({
-      doctorid: '',
-      password: '',
-    });
-    const handleLoginChange = (e) => {
-      const { name, value } = e.target;
+    doctor_id: '',
+    password: '',
+  }); //used declare and manage state variables directly within a function component
+  const handleLoginChange = (e) => {
+    const { name, value } = e.target;
       setLoginData((prevState) => ({
         ...prevState,
         [name]: value,
       }));
     };
-  const handleLoginSubmit = async (e) => {
+    const handleLoginSubmit = async (e) => {
       e.preventDefault();
       const { doctor_id, password } = loginData;
       if (doctor_id && password) {
         try {
           const response = await axios.get('http://localhost:8080/api/signup');
           const userExist = response.data.some(
-            (data) => data.doctor_id === doctor_id && data.password === password
+            (data) => data.doctor_id === doctor_id && data.password === password 
+            /*The Doctor Id and Password in the database is pulled using get and being compared with the input field entries*/ 
           );
           if (userExist) {
             alert('Login successful');
-            next();
+            Navigate('/Doctor');
           } else {
             alert('User Not Found');
           }
@@ -88,8 +87,8 @@ export default function LoginDoctor() {
       } else {
         alert('Please fill all the fields');
       }
-    }
-
+    }                                     //The Above code is to establish connection with the API useing axios
+    
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs" >
@@ -109,7 +108,7 @@ export default function LoginDoctor() {
           <div className="logo">
             <img src={logo} width={100} height={100} alt="Medic Aide Logo" />
           </div>
-          <div class='lg'>
+          <div className='lg'>
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main',ml:20 }}>
             <LockOutlinedIcon />
           </Avatar>
@@ -127,7 +126,7 @@ export default function LoginDoctor() {
               autoComplete="doctorid"
               autoFocus
               onChange={handleLoginChange}
-            />
+            />{/*Input fieldfor  the Doctor Id which will be used for Login*/ }
             <TextField
               margin="normal"
               required
@@ -138,7 +137,7 @@ export default function LoginDoctor() {
               id="password"
               autoComplete="current-password"
               onChange={handleLoginChange}
-            />
+            />{/*Input fieldfor  the Doctor Id which will be used for Login*/ }
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
@@ -148,7 +147,7 @@ export default function LoginDoctor() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={{handleLoginSubmit}}
+              onClick={handleLoginSubmit}
             >
               Login
             </Button>

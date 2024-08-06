@@ -1,0 +1,24 @@
+.report{
+    border-style: double;
+    margin-top: 2%;
+    margin-left: 3%;
+    margin-right: 3%;
+    background-color: white;
+}       /*Box within which content is displayed*/
+
+.report h3{
+    margin-left: 3%;
+}     /*heading tag*/
+
+.report p{
+    margin-left: 4%;
+} /*Reports called from the backend*/
+
+.report h1{
+    margin-left: 2%;
+}
+
+.report Button{
+    margin-left: 2%;
+    margin-top: 2%;
+}

@@ -12,6 +12,7 @@ import SignUpPat from './Components/SignupPat/SignUpPat.js';
 import Patient from './Components/Patient/Patient.js';
 import Main from './Components/Patient/Profile/Main.js';
 import Appointment from './Components/Patient/Appointment/Appointment.js';
+import Reports from './Components/Doctor/Reports/Reports.js';
 
 
 
@@ -31,6 +32,7 @@ function App() {
             <Route path='/Patient' element={<Patient />}/>
             <Route path='/Main' element={<Main />}/>
             <Route path='/Appointment' element={<Appointment />}/>
+            <Route path='/Reports' element={<Reports />} />
         </Routes>
     </BrowserRouter>
   );

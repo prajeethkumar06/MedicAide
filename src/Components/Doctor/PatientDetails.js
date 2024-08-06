@@ -71,6 +71,10 @@ export default function PatientDetails() {
     Navigate('/Prescription')
   }
 
+  const report = () =>{
+    Navigate("/Reports")
+  }
+
   const patient={medicalHistory: [
       "Hypertension",
       "Asthma",
@@ -276,7 +280,7 @@ export default function PatientDetails() {
             <Stack spacing={40} direction="row" sx={{ml:20 ,mr:10,mt:1,mb:1}}>
                 <Button variant="contained" onClick={cons}>Consultation</Button>
                 <Button variant="contained" onClick={pres}>Prescription</Button>
-                <Button variant="contained">Reports</Button>
+                <Button variant="contained" onClick={report}>Reports</Button>
             </Stack>
             </div>
         </Box>

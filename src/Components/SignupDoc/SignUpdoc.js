@@ -54,7 +54,7 @@ export default function SignUpDoc() {
     email: '',
     doctorid: '',
     password: '',
-  });
+  });  //used declare and manage state variables directly within a function component
       
   const handleSignupChange = (e) => {
     const { name, value } = e.target;
@@ -77,11 +77,11 @@ export default function SignUpDoc() {
     } else {
       alert('Please fill all the fields');
     }
-  };
+  };                                    //The Above code is to establish connection with the API useing axios and post the data in the database
   const Navigate=useNavigate();
     const next = () =>{
         Navigate('/LoginDoctor');
-    }
+    } //used For navigating from one page to another
 
   return (
     <ThemeProvider theme={theme}>
@@ -117,7 +117,7 @@ export default function SignUpDoc() {
                   label="First Name"
                   autoFocus
                   onChange={handleSignupChange}
-                />
+                /> {/**input field for first name**/}
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -128,7 +128,7 @@ export default function SignUpDoc() {
                   name="last_name"
                   autoComplete="family-name"
                   onChange={handleSignupChange}
-                />
+                />{/**input field for last name**/}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -139,7 +139,7 @@ export default function SignUpDoc() {
                   name="email_id"
                   autoComplete="email"
                   onChange={handleSignupChange}
-                />
+                />{/**input field for email id**/}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -150,7 +150,7 @@ export default function SignUpDoc() {
                   name="doctor_id"
                   autoComplete="doctorid"
                   onChange={handleSignupChange}
-                />
+                />{/**input field for doctor id**/}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -162,7 +162,7 @@ export default function SignUpDoc() {
                   id="password"
                   autoComplete="new-password"
                   onChange={handleSignupChange}
-                />
+                />{/**input field for password**/}
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
@@ -179,12 +179,12 @@ export default function SignUpDoc() {
               sx={{ mt: 3, mb: 2, bgcolor: 'secondary.main', '&:hover': { bgcolor: 'secondary.dark' } }}
             >
               Sign Up
-            </Button>
+            </Button>{/**submit button calling the function hadleSignUpSubmit using onClick**/}
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="/LoginDoctor" variant="body2">
                   Already have an account? Sign in
-                </Link>
+                </Link>{/**routed to Login Page of Doctor**/}
               </Grid>
             </Grid>
           </Box>
