@@ -11,7 +11,7 @@ export default function Reports() {
     const [report, setReport] = React.useState(null);
     React.useEffect(()=>{
         async function getData() {
-            const res = await axios.get("http://localhost:8080/api/consultation/consul001"); /*axios to handle HTTP requests*/
+            const res = await axios.get("http://localhost:8080/api/consultation/consul004"); /*axios to handle HTTP requests*/
             setReport(res.data);
         }
         getData();
