@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useState } from 'react';
+import axios from 'axios';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -52,18 +54,42 @@ const theme = createTheme({
 export default function LoginPatient() {
 
   const Navigate=useNavigate();
-  const Patient=()=>{
-    Navigate('/Patient')
-  }
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      patid: data.get('patid'),
-      password: data.get('password'),
-    });
-  };
+  const [loginData, setLoginData] = useState({
+    patient_id: '',
+    password: '',
+  }); //used declare and manage state variables directly within a function component
+  const handleLoginPatChange = (e) => {
+    const { name, value } = e.target;
+      setLoginData((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    };
+    const handleLoginPatSubmit = async (e) => {
+      e.preventDefault();
+      const { patient_id, password } = loginData;
+      if (patient_id && password) {
+        try {
+          const response = await axios.get('http://localhost:8080/api/signuppat');
+          const userExist = response.data.some(
+            (data) => data.patient_id === patient_id && data.password === password 
+            /*The Doctor Id and Password in the database is pulled using get and being compared with the input field entries*/ 
+          );
+          if (userExist) {
+            alert('Login successful');
+            Navigate('/Patient');
+          } else {
+            alert('User Not Found');
+          }
+        } catch (error) {
+          console.error('Error fetching users', error);
+          alert('Error logging in');
+        }
+      } else {
+        alert('Please fill all the fields');
+      }
+    }                                     //The Above code is to establish connection with the API useing axios
+  
 
 
   return (
@@ -92,16 +118,17 @@ export default function LoginPatient() {
           <Typography component="h1" variant="h5" sx={{ml:19}}>
           Patient
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
               fullWidth
-              id="patid"
+              id="patient_id"
               label="Patient ID"
-              name="patid"
+              name="patient_id"
               autoComplete="patid"
               autoFocus
+              onChange={handleLoginPatChange}
             />
             <TextField
               margin="normal"
@@ -112,6 +139,7 @@ export default function LoginPatient() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={handleLoginPatChange}
               />
             <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -122,7 +150,7 @@ export default function LoginPatient() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={Patient}
+              onClick={handleLoginPatSubmit}
             >
             Login
             </Button>

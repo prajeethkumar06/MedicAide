@@ -58,7 +58,7 @@ export default function Reports() {
                 {report.Past_surgeries}
                 </p>
             }                               {/*Data stored in the backend is being displayed using get mapping*/}
-            <Button variant="contained" color="success" sx={{ml:7 ,mb:5}} onClick={back}>
+            <Button className='moveback' variant="contained" color="success" onClick={back}>
                 Move Back
               </Button>
         </div>

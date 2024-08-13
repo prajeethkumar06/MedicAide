@@ -1,37 +1,69 @@
-.patient-profile {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    margin: 20px;
-    background-color: #f9f9f9;
-  }
-  
-  .profile-picture img {
-    border-radius: 50%;
-    margin-right: 20px;
-  }
-  
-  .profile-details {
-    max-width: 600px;
-  }
-  
-  .profile-details h2 {
-    margin: 0 0 10px 0;
-  }
-  
-  .profile-details p {
-    margin: 5px 0;
-  }
-  
-  .profile-details h3 {
-    margin-top: 20px;
-  }
-  
-  .profile-details ul {
-    list-style-type: disc;
-    padding-left: 20px;
-  }
+/* PatientProfile.css */
 
-  
+/* Container for the entire profile */
+.patient-profile {
+  display: flex;
+  flex-direction: row;
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile picture styling */
+.profile-picture {
+  margin-right: 20px;
+}
+
+.profile-picture img {
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile details styling */
+.profile-details {
+  flex: 1;
+}
+
+.profile-details p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  color: #333;
+  margin: 8px 0;
+  text-align: left;
+}
+
+.profile-details p strong {
+  font-weight: 600;
+  text-align: left;
+}
+
+/* Medical and Drug History sections */
+.profile-details h3 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #333;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.profile-details ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 0;
+  text-align: left;
+}
+
+.profile-details ul li {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  color: #555;
+  margin: 5px 0;
+  text-align: left;
+}

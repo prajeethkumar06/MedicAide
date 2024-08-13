@@ -19,6 +19,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import logo from '../../assets/Medic aide.png';
 import {useNavigate} from 'react-router-dom';
 import './Patient.css'
+import Carousel1 from './Carousel1';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -68,6 +69,9 @@ export default function Patient() {
   }
   const Appo = () =>{
     Navigate('/Appointment');
+  }
+  const Repo = () =>{
+    Navigate('/ReportsPat');
   }
   
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -225,12 +229,15 @@ export default function Patient() {
       {renderMobileMenu}
       {renderMenu}
       <div>
+        <div class="ad1">
+          <Carousel1 />
+        </div>
         <Box>
         <div class='patient'>
         <Stack spacing={40} direction="row" sx={{ml:20 ,mr:10,mt:1,mb:1}}>
             <Button variant="contained" onClick={Appo}>Book Appointment</Button>
             <Button variant="contained">Prescription</Button>
-            <Button variant="contained">Reports</Button>
+            <Button variant="contained" onClick={Repo}>Reports</Button>
         </Stack>
         </div>
         </Box>

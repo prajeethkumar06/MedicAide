@@ -1,19 +1,23 @@
 .App {
     font-family: Arial, sans-serif;
     text-align: center;
+    background-color: white;
+    margin-left: 30%;
+    margin-top: 3%;
+    margin-right: 30%;
+    margin-bottom:-1%
   }
   
-  header {
-    background: #007bff;
-    color: white;
-    padding: 1px;
+  header h1{
+    color: black;
+    padding: 2px;
   }
   
   main {
     padding: 20px;
   }
   
-  .appointment-form, .appointment-list {
+  .appointment-form{
     margin: 20px auto;
     max-width: 500px;
     text-align: left;

@@ -1,0 +1,61 @@
+/* ReportsPat.css */
+
+/* Container for the report */
+.report {
+    max-width: 1400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    color: #333;
+  }
+  
+  /* Header styles */
+  .report h1 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .report h4 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #555;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  /* Paragraph styles */
+  .report p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  /* Italic text */
+  .report p i {
+    font-style: italic;
+  }
+  
+  /* Button styling */
+  .MuiButton-root {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+  }
+  
+  /* AppBar styling (optional) */
+  .MuiAppBar-root {
+    box-shadow: none;
+  }
+  
+  .moveback{
+    margin-top: 2%;
+  }

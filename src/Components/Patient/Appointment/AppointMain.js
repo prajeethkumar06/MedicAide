@@ -63,16 +63,6 @@ function AppointMain() {
             <button type="submit">Book Appointment</button>
           </form>
         </section>
-        <section className="appointment-list">
-          <h2>Upcoming Appointments</h2>
-          <ul>
-            {appointments.map((appointment, index) => (
-              <li key={index}>
-                {appointment.name} has an appointment with Dr. {appointment.doctor} on {appointment.date} at {appointment.time}
-              </li>
-            ))}
-          </ul>
-        </section>
       </main>
     </div>
   );

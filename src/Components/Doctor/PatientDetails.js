@@ -17,9 +17,11 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import logo from '../../assets/Medic aide.png';
 import './PatientDetails.css';
-import image from '../../assets/patient.jpg';
+import image from '../../assets/Thalaivare.jpeg';
 import gif from '../../assets/Medic aide.gif';
 import { useNavigate } from 'react-router-dom';
+import AppBar1 from '../AppBar1.js'
+import Carousel from './Carousel.js';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -75,15 +77,11 @@ export default function PatientDetails() {
     Navigate("/Reports")
   }
 
-  const patient={medicalHistory: [
+  const patient={
+    medicalHistory: [
       "Hypertension",
       "Asthma",
     ],
-    drugHistory: [
-      "Thyroid Tablets [for 3 years]",
-      "Insulin Injection",
-      "Amlodepine"
-    ]
   };
   
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -185,61 +183,7 @@ export default function PatientDetails() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ backgroundColor: '#c21807' }}>
-        <Toolbar>
-          <img src={logo} width={60} height={60} alt="logo" class='shall1' />
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            ml={2}
-            sx={{ display: { xs: 'none', sm: 'block' } }}
-          >
-            Medic Aide
-          </Typography>
-          <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={0} color="error">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              color="inherit"
-            >
-              <Badge badgeContent={0} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-          </Box>
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </Box>
-        </Toolbar>
-      </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
+      <AppBar1 />
       <div>
         <Box>
             <div class='patdetpg'>
@@ -257,26 +201,20 @@ export default function PatientDetails() {
             <li key={index}>{condition}</li>
           ))}
         </ul>
-        <h3>Drug History</h3>
-        <ul>
-          {patient.drugHistory.map((condition, index) => (
-            <li key={index}>{condition}</li>
-          ))}
-        </ul>
                 </div>
                 <img src={image} width={150} height={150} class='pp'></img>
             </div>
-            <div class='gif'>
-                <img src={gif} width={500} height={240} class='gif'></img>
-            </div>
             <div class='reminder'>
-              <h1>Reminder</h1>
-              <h4>Today's Appointments:</h4>
-              <p>Udhayan J M</p>
-              <p>Manikam</p>
-              <p>Kaaliappan</p>
-            </div>
-            <div class='patdetpg'>
+            <h1>Reminder</h1>
+            <h4>Today's Appointments:</h4>
+            <p>Udhayan J M</p>
+            <p>Manikam</p>
+            <p>Kaaliappan</p>
+          </div>
+          <div class='ad'>
+          <Carousel/>
+          </div>
+            <div class='buton'>
             <Stack spacing={40} direction="row" sx={{ml:20 ,mr:10,mt:1,mb:1}}>
                 <Button variant="contained" onClick={cons}>Consultation</Button>
                 <Button variant="contained" onClick={pres}>Prescription</Button>

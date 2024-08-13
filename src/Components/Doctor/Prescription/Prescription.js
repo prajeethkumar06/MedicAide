@@ -12,7 +12,6 @@ import Menu from '@mui/material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import SearchIcon from '@mui/icons-material/Search';
-import Button from '@mui/material/Button';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import logo from '../../../assets/Medic aide.png';
@@ -230,9 +229,6 @@ export default function Prescription() {
             </div>
             <SearchBar />
             <MedicineList />
-            <Button variant="contained" color="success" sx={{mt:4,ml:85,mb:4}}>
-                Complete
-            </Button>
         </div>
         </Box>
       </div>
